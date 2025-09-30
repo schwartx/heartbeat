@@ -1,0 +1,15 @@
+[Unit]
+Description=heartbeat server
+After=network.target
+
+[Service]
+Type=simple
+Environment=RUST_LOG=info
+ExecStart=%h/.local/bin/heartbeat --port 14999 -t 3 -m 1
+Restart=on-failure
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
